@@ -34,7 +34,14 @@
   }
   .wrap { max-width: 640px; margin: 0 auto; padding: 28px 16px 48px; }
   header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  header img { width: 150px; height: auto; display: block; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .brand img { width: 64px; height: 64px; display: block; flex: none; }
+  .wordmark { display: flex; flex-direction: column; line-height: 1.15; }
+  .wm-name { font-family: "Plus Jakarta Sans", Inter, sans-serif; font-weight: 800; font-size: 17px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate); }
+  .wm-name .pulse { color: var(--pink); }
+  .wm-name .digital { color: var(--slate); }
+  .wm-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-top: 3px; }
+  @media (max-width: 420px) { header .tag { display: none; } }
   header .tag { font-size: 13px; color: var(--teal); font-weight: 500; }
   .rule { height: 4px; border-radius: 4px; margin: 18px 0 26px;
     background: linear-gradient(90deg, var(--teal), var(--gold), var(--lime), var(--pink)); }
@@ -93,7 +100,10 @@
 <body>
 <div class="wrap">
   <header>
-    <img src="logo.png" alt="Pixel Pulse Digital" width="150" height="59">
+    <a class="brand" href="https://pixelpulse.co.za" aria-label="Pixel Pulse Digital">
+      <img src="badge-official.png" alt="Pixel Pulse Digital logo" width="64" height="64">
+      <span class="wordmark"><span class="wm-name">Pixel <span class="pulse">Pulse</span> <span class="digital">Digital</span></span><span class="wm-tag">The Digital Heartbeat</span></span>
+    </a>
     <span class="tag">Research poll</span>
   </header>
   <div class="rule" aria-hidden="true"></div>
