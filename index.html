@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Staff Document Check | Pixel Pulse Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F6F1E7;
+    --white: #FFFFFF;
+    --ink: #1B1815;
+    --muted: #6F665C;
+    --slate: #0D222B;
+    --teal: #4F93A0;
+    --gold: #F2A825;
+    --lime: #A9C23F;
+    --pink: #D42A5C;
+    --line: #E4DACA;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--cream); }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 28px 16px 48px; }
+  header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  header img { width: 150px; height: auto; display: block; }
+  header .tag { font-size: 13px; color: var(--teal); font-weight: 500; }
+  .rule { height: 4px; border-radius: 4px; margin: 18px 0 26px;
+    background: linear-gradient(90deg, var(--teal), var(--gold), var(--lime), var(--pink)); }
+  h1 { font-family: "Plus Jakarta Sans", Inter, sans-serif; font-weight: 800; letter-spacing: -0.02em;
+    font-size: clamp(24px, 5vw, 30px); line-height: 1.2; margin: 0 0 10px; color: var(--slate); }
+  .intro { color: var(--muted); margin: 0 0 24px; }
+  .card { background: var(--white); border-radius: var(--radius); padding: 22px 20px; margin-bottom: 16px;
+    box-shadow: 0 1px 0 var(--line); }
+  fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+  legend { font-family: "Plus Jakarta Sans", Inter, sans-serif; font-weight: 700; font-size: 17px;
+    color: var(--slate); margin-bottom: 4px; padding: 0; }
+  .hint { font-size: 14px; color: var(--muted); margin: 0 0 12px; }
+  .req { color: var(--pink); }
+  .options { display: grid; gap: 8px; margin-top: 10px; }
+  @media (min-width: 520px) { .options.two { grid-template-columns: 1fr 1fr; } }
+  .opt { position: relative; }
+  .opt input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+  .opt span { display: block; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 10px;
+    background: var(--cream); font-weight: 500; transition: border-color .15s, background .15s; }
+  .opt input:hover + span { border-color: var(--teal); }
+  .opt input:focus-visible + span { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .opt input:checked + span { border-color: var(--teal); background: #E3EFF1; color: var(--slate); }
+  .opt input[type=checkbox]:checked + span::before, .opt input[type=radio]:checked + span::before {
+    content: "\2713  "; color: var(--teal); font-weight: 700; }
+  label.field { display: block; font-weight: 600; margin: 14px 0 6px; color: var(--slate); }
+  input[type=text], input[type=tel] { width: 100%; font: inherit; padding: 11px 12px; border: 1.5px solid var(--line);
+    border-radius: 10px; background: var(--cream); color: var(--ink); }
+  input[type=text]:focus, input[type=tel]:focus { outline: 3px solid var(--gold); outline-offset: 1px; border-color: var(--teal); }
+  .consent { display: flex; gap: 10px; align-items: flex-start; margin-top: 16px; font-size: 15px; }
+  .consent input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--teal); flex: none; }
+  #contact[hidden] { display: none; }
+  .error { color: var(--pink); font-size: 14px; font-weight: 600; margin: 8px 0 0; min-height: 0; }
+  .btn { display: inline-block; font: 600 16px Inter, sans-serif; border: 0; border-radius: 10px; cursor: pointer;
+    padding: 14px 26px; background: var(--teal); color: #fff; box-shadow: 0 4px 0 #2F6570;
+    transform: translateY(0); transition: transform .05s, box-shadow .05s; }
+  .btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #2F6570; }
+  .btn[disabled] { opacity: .65; cursor: wait; }
+  .submit-row { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .privacy { font-size: 13px; color: var(--muted); margin-top: 22px; }
+  .privacy a { color: var(--teal); }
+  .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  #thanks { text-align: left; }
+  #thanks h1 { margin-bottom: 8px; }
+  footer { margin-top: 30px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="logo.png" alt="Pixel Pulse Digital" width="150" height="59">
+    <span class="tag">Research poll</span>
+  </header>
+  <div class="rule" aria-hidden="true"></div>
+
+  <main id="poll">
+    <h1>Staff document check: 20 seconds</h1>
+    <p class="intro">Thank you for clicking. We are researching how businesses keep track of staff ID and work-permit documents. Everyone who answers gets a summary of what we learn. No sales pitch.</p>
+
+    <form id="form" novalidate>
+      <input type="hidden" name="lead_ref" id="lead_ref">
+      <div class="hp" aria-hidden="true">
+        <label>Leave this empty <input type="text" name="company_website" id="company_website" tabindex="-1" autocomplete="off"></label>
+      </div>
+
+      <div class="card">
+        <fieldset id="q-tracking">
+          <legend>How do you track staff document expiry dates today? <span class="req">*</span></legend>
+          <div class="options two">
+            <label class="opt"><input type="radio" name="tracking_method" value="Paper files"><span>Paper files</span></label>
+            <label class="opt"><input type="radio" name="tracking_method" value="Spreadsheet"><span>Spreadsheet</span></label>
+            <label class="opt"><input type="radio" name="tracking_method" value="HR or payroll system"><span>HR or payroll system</span></label>
+            <label class="opt"><input type="radio" name="tracking_method" value="Nothing formal yet"><span>Nothing formal yet</span></label>
+          </div>
+          <p class="error" id="err-tracking" role="alert"></p>
+        </fieldset>
+      </div>
+
+      <div class="card">
+        <fieldset>
+          <legend>Has the Department of Employment and Labour or Home Affairs inspected your business in the last 3 years?</legend>
+          <div class="options two">
+            <label class="opt"><input type="radio" name="inspected_last_3_years" value="Yes"><span>Yes</span></label>
+            <label class="opt"><input type="radio" name="inspected_last_3_years" value="No"><span>No</span></label>
+            <label class="opt"><input type="radio" name="inspected_last_3_years" value="Not sure"><span>Not sure</span></label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="card">
+        <fieldset>
+          <legend>What is the biggest headache with staff documents?</legend>
+          <p class="hint">Tick any that apply.</p>
+          <div class="options two" id="headache-options"></div>
+        </fieldset>
+      </div>
+
+      <div class="card" id="sector-card" hidden>
+        <fieldset id="q-sector">
+          <legend id="sector-question"></legend>
+          <div class="options" id="sector-options"></div>
+        </fieldset>
+      </div>
+
+      <div class="card">
+        <fieldset id="q-call">
+          <legend>Would a 10-minute call to share your experience be useful? <span class="req">*</span></legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="discovery_call" value="Yes, contact me"><span>Yes, contact me</span></label>
+            <label class="opt"><input type="radio" name="discovery_call" value="Maybe later, send the summary"><span>Maybe later, send the summary</span></label>
+            <label class="opt"><input type="radio" name="discovery_call" value="No thanks"><span>No thanks</span></label>
+          </div>
+          <p class="error" id="err-call" role="alert"></p>
+        </fieldset>
+
+        <div id="contact" hidden>
+          <label class="field" for="contact_name">Your name <span class="req">*</span></label>
+          <input type="text" id="contact_name" name="contact_name" autocomplete="name">
+          <label class="field" for="contact_number">Best number to reach you <span class="req">*</span></label>
+          <input type="tel" id="contact_number" name="contact_number" autocomplete="tel" inputmode="tel" placeholder="e.g. 082 123 4567">
+          <label class="field" for="best_time">Best day or time</label>
+          <input type="text" id="best_time" name="best_time" placeholder="e.g. Tuesday afternoon">
+          <label class="consent"><input type="checkbox" id="consent_to_contact" name="consent_to_contact" value="true">
+            <span>I agree that Pixel Pulse Digital may contact me about this research. <span class="req">*</span></span></label>
+          <p class="error" id="err-contact" role="alert"></p>
+        </div>
+      </div>
+
+      <div class="submit-row">
+        <button class="btn" type="submit" id="submit">Send my answers</button>
+        <p class="error" id="err-submit" role="alert"></p>
+      </div>
+    </form>
+
+    <p class="privacy">We only use your answers for this research and only use contact details to arrange the call you asked for. To have your details removed, email <a href="mailto:info@pixelpulse.co.za">info@pixelpulse.co.za</a>.</p>
+  </main>
+
+  <section id="thanks" hidden>
+    <h1>Thank you, that really helps.</h1>
+    <p class="intro" id="thanks-msg">We will send you the summary once we have spoken to about 20 businesses.</p>
+  </section>
+
+  <footer>Khotsa Enterprise (Pty) Ltd t/a Pixel Pulse Digital &middot; Reg 2022/722709/07 &middot; Fourways, Johannesburg</footer>
+</div>
+
+<script>
+(function () {
+  // Paste the Make.com custom webhook URL here before publishing.
+  var WEBHOOK_URL = "https://hook.eu1.make.com/m1w4og0fsuv4ql9xhenoljo6y7hicrtm";
+
+  var params = new URLSearchParams(window.location.search);
+  var form = document.getElementById("form");
+  var contact = document.getElementById("contact");
+  var isTest = params.get("test") === "1";
+
+  // Sector-specific content, picked by &sector= in the link.
+  var SECTORS = {
+    restaurant: {
+      label: "Restaurants & Hospitality",
+      tag: "Research poll: restaurants",
+      who: "restaurants and hospitality businesses",
+      headaches: ["Tracking expiry dates", "Missing documents", "Staff turnover",
+        "Casual and shift staff records", "Proving status during an inspection", "Other"],
+      question: "If an inspector walked into your dining room on a busy Saturday night, could you produce every staff member's valid ID or permit within 5 minutes?",
+      answers: ["Yes, within 5 minutes", "Probably, but it would take longer", "No, not right now", "Not sure"]
+    },
+    security: {
+      label: "Security (PSIRA)",
+      tag: "Research poll: security companies",
+      who: "security companies",
+      headaches: ["Tracking expiry dates", "Missing documents", "Client audits",
+        "PSIRA and site records", "Staff turnover", "Tender requirements", "Other"],
+      question: "Do your corporate clients require you to submit proof of your staff's legal work status during contract renewals?",
+      answers: ["Yes, at every renewal", "Sometimes", "No, not yet", "Not sure"]
+    },
+    facilities: {
+      label: "Facilities Management",
+      tag: "Research poll: facilities companies",
+      who: "facilities and cleaning companies",
+      headaches: ["Tracking expiry dates", "Missing documents", "Client audits",
+        "Staff across many client sites", "Staff turnover", "Tender requirements", "Other"],
+      question: "Do your corporate clients require you to submit proof of your staff's legal work status during contract renewals?",
+      answers: ["Yes, at every renewal", "Sometimes", "No, not yet", "Not sure"]
+    },
+    labour: {
+      label: "Labour Brokers / TES",
+      tag: "Research poll: labour brokers",
+      who: "labour brokers and TES providers",
+      headaches: ["Tracking expiry dates", "Checking workers before placement", "Client audits",
+        "Shared liability with clients", "High worker volumes", "Tender requirements", "Other"],
+      question: "How do you currently verify a temp worker's legal right to work before they arrive at the client's site?",
+      answers: ["We check documents ourselves before every placement", "We check once at registration only",
+        "The client does the check", "No formal check yet", "Other"]
+    }
+  };
+  var DEFAULT_HEADACHES = ["Tracking expiry dates", "Missing documents", "Client audits",
+    "Staff turnover", "Tender requirements", "Other"];
+  var ALIASES = { restaurants: "restaurant", hospitality: "restaurant", facility: "facilities",
+    labour_broker: "labour", labor: "labour", tes: "labour" };
+  var sectorKey = (params.get("sector") || "").toLowerCase().trim();
+  sectorKey = ALIASES[sectorKey] || sectorKey;
+  var sector = SECTORS[sectorKey] || null;
+
+  function optionHTML(type, name, value) {
+    var label = document.createElement("label");
+    label.className = "opt";
+    var input = document.createElement("input");
+    input.type = type; input.name = name; input.value = value;
+    var span = document.createElement("span");
+    span.textContent = value;
+    label.appendChild(input); label.appendChild(span);
+    return label;
+  }
+
+  var headBox = document.getElementById("headache-options");
+  (sector ? sector.headaches : DEFAULT_HEADACHES).forEach(function (h) {
+    headBox.appendChild(optionHTML("checkbox", "biggest_headaches", h));
+  });
+
+  if (sector) {
+    document.querySelector("header .tag").textContent = sector.tag;
+    document.querySelector(".intro").textContent = "Thank you for clicking. We are researching how " + sector.who +
+      " keep track of staff ID and work-permit documents. Everyone who answers gets a summary of what we learn. No sales pitch.";
+    document.getElementById("sector-question").textContent = sector.question;
+    var sBox = document.getElementById("sector-options");
+    sector.answers.forEach(function (a) { sBox.appendChild(optionHTML("radio", "sector_answer", a)); });
+    document.getElementById("sector-card").hidden = false;
+  }
+
+  // 1. Hidden reference from the email link (Airtable record ID).
+  var ref = (params.get("ref") || "").trim();
+  if (/^rec[A-Za-z0-9]{14}$/.test(ref)) document.getElementById("lead_ref").value = ref;
+
+  // Pre-select the answer the reader clicked in the email.
+  var q1 = params.get("q1");
+  if (q1) {
+    form.querySelectorAll('input[name="tracking_method"]').forEach(function (el) {
+      if (el.value === q1) el.checked = true;
+    });
+  }
+
+  // 2. Reveal contact fields only for "Yes, contact me".
+  function syncContact() {
+    var picked = form.querySelector('input[name="discovery_call"]:checked');
+    var show = !!picked && picked.value === "Yes, contact me";
+    contact.hidden = !show;
+    if (!show) document.getElementById("err-contact").textContent = "";
+  }
+  form.querySelectorAll('input[name="discovery_call"]').forEach(function (el) {
+    el.addEventListener("change", syncContact);
+  });
+  syncContact();
+
+  function val(name) {
+    var el = form.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : "";
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    ["err-tracking", "err-call", "err-contact", "err-submit"].forEach(function (id) {
+      document.getElementById(id).textContent = "";
+    });
+
+    var tracking = val("tracking_method");
+    var call = val("discovery_call");
+    var wantsCall = call === "Yes, contact me";
+    var name = document.getElementById("contact_name").value.trim();
+    var number = document.getElementById("contact_number").value.trim();
+    var consent = document.getElementById("consent_to_contact").checked;
+    var ok = true;
+
+    if (!tracking) { document.getElementById("err-tracking").textContent = "Please pick one option."; ok = false; }
+    if (!call) { document.getElementById("err-call").textContent = "Please pick one option."; ok = false; }
+    if (wantsCall && (!name || !number || !consent)) {
+      document.getElementById("err-contact").textContent = "Please add your name and number, and tick the consent box.";
+      ok = false;
+    }
+    if (!ok) return;
+
+    var headaches = Array.prototype.map.call(
+      form.querySelectorAll('input[name="biggest_headaches"]:checked'), function (el) { return el.value; });
+
+    // Contact details are only sent when the person asked for a call.
+    var data = {
+      lead_ref: document.getElementById("lead_ref").value,
+      sector: sector ? sector.label : "Unknown",
+      tracking_method: tracking,
+      inspected_last_3_years: val("inspected_last_3_years"),
+      biggest_headaches: headaches.join(", "),
+      sector_question: sector ? sector.question : "",
+      sector_answer: val("sector_answer"),
+      discovery_call: call,
+      contact_name: wantsCall ? name : "",
+      contact_number: wantsCall ? number : "",
+      best_time: wantsCall ? document.getElementById("best_time").value.trim() : "",
+      consent_to_contact: wantsCall && consent ? "true" : "false",
+      submitted_at: new Date().toISOString()
+    };
+
+    // Honeypot: bots fill hidden fields. Show success without sending.
+    if (document.getElementById("company_website").value) { done(call); return; }
+
+    if (isTest || !WEBHOOK_URL) {
+      console.log("[poll test payload]", data);
+      window.__lastPayload = data;
+      done(call);
+      return;
+    }
+
+    var btn = document.getElementById("submit");
+    btn.disabled = true;
+    btn.textContent = "Sending...";
+    // Form-encoded body keeps this a simple CORS request (no preflight). Make parses it as fields.
+    fetch(WEBHOOK_URL, { method: "POST", mode: "no-cors", body: new URLSearchParams(data) })
+      .then(function () { done(call); })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = "Send my answers";
+        document.getElementById("err-submit").textContent = "That did not go through. Please check your connection and try again.";
+      });
+  });
+
+  function done(call) {
+    document.getElementById("poll").hidden = true;
+    var msg = document.getElementById("thanks-msg");
+    if (call === "Yes, contact me") msg.textContent = "We will be in touch to set up a short call. You will also get the summary once we have spoken to about 20 businesses.";
+    else if (call === "No thanks") msg.textContent = "We appreciate your answers. You can close this page.";
+    document.getElementById("thanks").hidden = false;
+    window.scrollTo(0, 0);
+  }
+})();
+</script>
+</body>
+</html>
