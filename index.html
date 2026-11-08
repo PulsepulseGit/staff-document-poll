@@ -78,7 +78,16 @@
   .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
   #thanks { text-align: left; }
   #thanks h1 { margin-bottom: 8px; }
-  footer { margin-top: 30px; font-size: 12px; color: var(--muted); }
+  footer { margin-top: 30px; font-size: 14px; color: var(--muted); }
+  .contact-card { border-top: 3px solid var(--gold); padding-top: 16px; }
+  .contact-card p { margin: 0; }
+  .contact-card .who { font-family: "Plus Jakarta Sans", Inter, sans-serif; font-weight: 700; color: var(--slate); font-size: 16px; }
+  .contact-card .org { color: var(--teal); font-weight: 500; margin-bottom: 10px; }
+  .contact-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .contact-card li span { display: inline-block; min-width: 76px; color: var(--muted); }
+  .contact-card a { color: var(--slate); font-weight: 500; text-decoration: none; }
+  .contact-card a:hover { text-decoration: underline; }
+  .legal { margin: 16px 0 0; font-size: 12px; }
 </style>
 </head>
 <body>
@@ -168,7 +177,7 @@
       </div>
     </form>
 
-    <p class="privacy">We only use your answers for this research and only use contact details to arrange the call you asked for. To have your details removed, email <a href="mailto:info@pixelpulse.co.za">info@pixelpulse.co.za</a>.</p>
+    <p class="privacy">We only use your answers for this research and only use contact details to arrange the call you asked for. To have your details removed, email <a href="mailto:kholo@pixelpulse.co.za">kholo@pixelpulse.co.za</a>.</p>
   </main>
 
   <section id="thanks" hidden>
@@ -176,7 +185,18 @@
     <p class="intro" id="thanks-msg">We will send you the summary once we have spoken to about 20 businesses.</p>
   </section>
 
-  <footer>Khotsa Enterprise (Pty) Ltd t/a Pixel Pulse Digital &middot; Reg 2022/722709/07 &middot; Fourways, Johannesburg</footer>
+  <footer>
+    <div class="contact-card">
+      <p class="who">Kholo Maja</p>
+      <p class="org">Pixel Pulse Digital</p>
+      <ul>
+        <li><span>Email</span><a href="mailto:kholo@pixelpulse.co.za">kholo@pixelpulse.co.za</a></li>
+        <li><span>Phone</span><a href="tel:+27662856553">066 285 6553</a></li>
+        <li><span>Location</span>Fourways, Johannesburg</li>
+      </ul>
+    </div>
+    <p class="legal">Khotsa Enterprise (Pty) Ltd t/a Pixel Pulse Digital &middot; Reg 2022/722709/07</p>
+  </footer>
 </div>
 
 <script>
