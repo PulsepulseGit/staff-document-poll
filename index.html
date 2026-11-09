@@ -298,6 +298,20 @@
   var ref = (params.get("ref") || "").trim();
   if (/^rec[A-Za-z0-9]{14}$/.test(ref)) document.getElementById("lead_ref").value = ref;
 
+  // Open tracking: tell Make this lead opened the poll (once per browser tab, never in test mode).
+  // It sends only the Airtable record ID and sector key, no personal data.
+  var OPEN_TRACKER_URL = "https://hook.eu1.make.com/9yp5f6j773vf1b48ehgkx8z68fxmc2fx";
+  if (/^rec[A-Za-z0-9]{14}$/.test(ref) && !isTest) {
+    var seenKey = "rtw_open_" + ref, alreadySeen = false;
+    try { alreadySeen = sessionStorage.getItem(seenKey) === "1"; sessionStorage.setItem(seenKey, "1"); } catch (e) {}
+    if (!alreadySeen) {
+      try {
+        fetch(OPEN_TRACKER_URL, { method: "POST", mode: "no-cors", keepalive: true,
+          body: new URLSearchParams({ ref: ref, event: "open", sector: sectorKey || "" }) });
+      } catch (e) {}
+    }
+  }
+
   // Pre-select the answer the reader clicked in the email.
   var q1 = params.get("q1");
   if (q1) {
